@@ -18,33 +18,23 @@ Here is what I put in the `build.gradle` of `generated_java`
 ```groovy
 buildscript {
     dependencies {
-        classpath project(":gradle_generate_task")
+        classpath project(":gradle_tasks")
     }
 }
 
-task(regenerate, type: GenerateDatabaseObjects) {
-  // ...
+task regenerate(type: GenerateDatabaseObjectsTask) {
+    // ...
 }
 ```
 
-But when I run `generated_java:regenerate` it can't find anything:
+But when I run `generated_java:regenerate` it complains:
 
-```
-FAILURE: Build failed with an exception.                                                                       
+```sh
+FAILURE: Build failed with an exception.
 
-* What went wrong:                                                                                             
-A problem occurred configuring project ':generated_java'.                                                    
-> Could not resolve all dependencies for configuration ':generated_java:classpath'.                          
-   > Could not find org.apache.commons:commons-lang3:3.1.                                                      
-     Required by:                                                                                              
-         app:generated_java:unspecified > app:gradle_generate_task:unspecified                    
-         app:generated_java:unspecified > app:gradle_generate_task:unspecified > app:utils:unspecified                                                                                                
-         app:generated_java:unspecified > app:gradle_generate_task:unspecified > app:utils:unspecified > app:base:unspecified                                                         
-         app:generated_java:unspecified > app:gradle_generate_task:unspecified > app:utils:unspecified > app:base2:unspecified                                                   
-   > Could not find org.slf4j:slf4j-api:1.6.6.                                                                 
-     Required by:                                                                                              
-         app:generated_java:unspecified > app:gradle_generate_task:unspecified                    
-         app:generated_java:unspecified > app:gradle_generate_task:unspecified > app:lib
+* What went wrong:
+A problem occurred configuring project ':generated_java'.
+> Cannot use project dependencies in a script classpath definition.
 ```
 
 [sscce]: <http://sscce.org/>

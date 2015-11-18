@@ -1,0 +1,11 @@
+import app.gradle.GenerateDatabaseObjectsTask
+
+buildscript {
+    dependencies {
+        classpath project(":gradle_tasks")
+    }
+}
+
+task regenerate(type: GenerateDatabaseObjectsTask) {
+    greeting = "It really works!"
+}
