@@ -1,0 +1,3 @@
+rootProject.name = 'gradle_task_in_subproject'
+
+include 'utils', 'gradle_tasks', 'generated_java', 'app'
